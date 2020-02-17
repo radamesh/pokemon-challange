@@ -2,13 +2,13 @@ export class Pokemons {
   count: number;
   next: string;
   previous: boolean;
-  results: Array<any>;
+  results:SubArray;
 
   constructor(
     count: number,
     next: string,
     previous: boolean,
-    results: Array<any>
+    results: SubArray
   ) {
     this.count = count
     this.next = next

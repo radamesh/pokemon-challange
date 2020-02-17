@@ -7,13 +7,11 @@ import { DetailsComponent } from './details/details.component'
 const routes: Routes = [
   {
     path: 'pokemons',
-    component: PokemonsComponent,
-    data: { title: ''}
+    component: PokemonsComponent
   },
   {
     path: 'pokemons-details/:id',
-    component: DetailsComponent,
-    data: { title: ''}
+    component: DetailsComponent
   },
   {
     path: '',

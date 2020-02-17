@@ -15,16 +15,16 @@ export class DetailsComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
-    this.getPokemon(this.route.snapshot.params['name'])
+    this.getPokemon(this.route.snapshot.params['id'])
   }
 
-  getPokemon(name) {
-    this.api.getPokemon(name)
-    .subscribe(data => {
-      this.pokemons = data
-      console.log(this.pokemons)
-      this.isLoadingResults = false
-    })
+  getPokemon(id) {
+    this.api.getPokemon(id)
+      .subscribe(data => {
+        this.pokemons = data
+        console.log(this.pokemons)
+        this.isLoadingResults = false
+      })
   }
 
 }

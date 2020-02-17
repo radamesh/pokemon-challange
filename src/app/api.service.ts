@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError} from 'rxjs'
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
-import { catchError, tap, map } from 'rxjs/operators'
+import { Observable, of } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { catchError, tap } from 'rxjs/operators'
 import { Pokemons } from 'src/model/pokemons'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-}
-
-const apiUrl = 'http://pokeapi.co/api/v2/'
+const pokeApi = 'https://pokeapi.co/api/v2/pokemon'
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +14,18 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getPokemons(): Observable<Pokemons[]> {
-    const url = `${apiUrl}pokemon/?limit=20`
+    const url = `${pokeApi}/?limit=50`
     return this.http.get<Pokemons[]>(url)
       .pipe(
-        tap(pokemon => console.log('leu os produtos')),
+        tap(_ => console.log('leu os pokemos')),
         catchError(this.handleError('getPokemons', []))
       )
   }
 
   getPokemon(name: String): Observable<Pokemons> {
-    const url = `${apiUrl}pokemon/${name}`
+    const url = `${pokeApi}/${name}`
     return this.http.get<Pokemons>(url).pipe(
-      tap(_ => console.log(`leu o produto name=${name}`)),
+      tap(_ => console.log(`leu o pokemos name=${name}`)),
       catchError(this.handleError<Pokemons>(`getPokemon name=${name}`))
     )
   }
