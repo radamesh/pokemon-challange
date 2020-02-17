@@ -18,7 +18,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getPokemons(): Observable<Pokemons[]> {
-    const url = `${apiUrl}pokemon/?limit=120`
+    const url = `${apiUrl}pokemon/?limit=20`
     return this.http.get<Pokemons[]>(url)
       .pipe(
         tap(pokemon => console.log('leu os produtos')),
@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   getPokemon(name: String): Observable<Pokemons> {
-    const url = `${apiUrl}${name}`
+    const url = `${apiUrl}pokemon/${name}`
     return this.http.get<Pokemons>(url).pipe(
       tap(_ => console.log(`leu o produto name=${name}`)),
       catchError(this.handleError<Pokemons>(`getPokemon name=${name}`))

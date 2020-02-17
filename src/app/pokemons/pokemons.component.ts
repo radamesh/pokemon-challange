@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Pokemons } from 'src/model/pokemons'
+import { Pokemons } from 'src/model/pokemons';
 
 @Component({
   selector: 'app-pokemons',
@@ -9,7 +9,7 @@ import { Pokemons } from 'src/model/pokemons'
 })
 export class PokemonsComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'url']
+  // displayedColumns: string[] = ['name', 'url']
   dataSource: Pokemons[]
   isLoadingResults = true
 
@@ -17,8 +17,9 @@ export class PokemonsComponent implements OnInit {
 
   ngOnInit() {
     this._api.getPokemons()
-    .subscribe(res => {
-      this.dataSource = res;
+    .subscribe(data => {
+      console.log(data)
+      this.dataSource = data
       console.log(this.dataSource)
       this.isLoadingResults = false
     }, err => {
